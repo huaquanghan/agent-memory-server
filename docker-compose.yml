@@ -33,15 +33,15 @@ services:
       dockerfile: Dockerfile
     environment:
       - REDIS_URL=redis://redis:6379
-      - PORT=9050
+      - PORT=9000
       # Add your API keys here or use a .env file
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
     ports:
-      - "9050:9000"
+      - "9000:9000"
     depends_on:
       - redis
-    command: ["uv", "run", "agent-memory", "mcp", "--mode", "sse"]
+    command: ["uv", "run", "agent-memory", "mcp", "--mode", "sse", "--port", "9000"]
 
   task-worker:
     build:
